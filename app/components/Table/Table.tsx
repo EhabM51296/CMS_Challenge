@@ -4,7 +4,7 @@ import {
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { Fragment, useMemo, useRef, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 
 import clsx from "clsx";
 
@@ -15,6 +15,9 @@ export type Props<T> = {
   data: T[];
   columns: ColumnDef<T, any>[];
   title: string;
+  currentPage: number;
+  totalPages: number;
+  pageHandler: (page: number) => void;
   className?: string;
 };
 
@@ -22,23 +25,16 @@ export default function InvoicesTable<T>({
   data,
   columns,
   title,
+  currentPage,
+  pageHandler,
+  totalPages,
   className,
 }: Props<T>) {
-  const [currentPage, setCurrentPage] = useState(1);
-  const changePageHandler = (page: number) => {
-    setCurrentPage(page);
-  };
-  const itemsPerPage = 10;
-
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentData = data.slice(startIndex, endIndex);
-
   const containerRef = useRef<HTMLDivElement | null>(null);
   const tableHeaderRef = useRef<HTMLTableRowElement | null>(null);
 
   const table = useReactTable<T>({
-    data: currentData,
+    data: data,
     columns: columns,
     defaultColumn: {
       minSize: 20,
@@ -93,7 +89,7 @@ export default function InvoicesTable<T>({
           </thead>
           <tbody>
             <InvoicesTableBody
-              data={currentData}
+              data={data}
               table={table}
               tableColumns={columns.length}
             />
@@ -102,8 +98,8 @@ export default function InvoicesTable<T>({
       </div>
       <Pagination
         currentPage={currentPage}
-        totalPages={Math.floor(data.length / itemsPerPage)}
-        onPageChange={setCurrentPage}
+        totalPages={totalPages}
+        changePageHandler={pageHandler}
       />
     </div>
   );
