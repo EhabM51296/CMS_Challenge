@@ -4,7 +4,7 @@ import {
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { Fragment, useMemo, useRef } from "react";
+import { Fragment, useMemo, useRef, useState } from "react";
 
 import clsx from "clsx";
 
@@ -24,16 +24,21 @@ export default function InvoicesTable<T>({
   title,
   className,
 }: Props<T>) {
+  const [currentPage, setCurrentPage] = useState(1);
+  const changePageHandler = (page: number) => {
+    setCurrentPage(page);
+  };
+  const itemsPerPage = 10;
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentData = data.slice(startIndex, endIndex);
+
   const containerRef = useRef<HTMLDivElement | null>(null);
   const tableHeaderRef = useRef<HTMLTableRowElement | null>(null);
 
-
-  const memoizedData = useMemo(() => {
-    return data;
-  }, [data]);
-
   const table = useReactTable<T>({
-    data: memoizedData,
+    data: currentData,
     columns: columns,
     defaultColumn: {
       minSize: 20,
@@ -88,14 +93,18 @@ export default function InvoicesTable<T>({
           </thead>
           <tbody>
             <InvoicesTableBody
-              data={memoizedData}
+              data={currentData}
               table={table}
               tableColumns={columns.length}
             />
           </tbody>
         </table>
       </div>
-      <Pagination />
+      <Pagination
+        currentPage={currentPage}
+        totalPages={Math.floor(data.length / itemsPerPage)}
+        onPageChange={setCurrentPage}
+      />
     </div>
   );
 }

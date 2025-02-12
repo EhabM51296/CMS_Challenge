@@ -46,7 +46,6 @@ export default function EmployeesPage() {
     <div>
       <Table
         columns={columns}
-        className="mt-3"
         data={employees}
         title="Employees"
       />
