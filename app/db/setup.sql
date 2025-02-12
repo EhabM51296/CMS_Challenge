@@ -15,19 +15,37 @@ DROP TABLE IF EXISTS timesheets;
 --     datetime_field DATETIME
 -- );
 
+
+-- employee:
+-- id, name, email, phone, dob, photo, cv, ID stored in app system
+-- job title, department, salary, start date, end date
+
+-- timesheet:
+-- start time, end time, list of employees
+
 -- Create employees table
 CREATE TABLE employees (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    full_name TEXT NULL
-    -- Rest of the fields
+    full_name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    dob DATE  NOT NULL,
+    phone TEXT NULL,
+    photo TEXT NULL,
+    cv TEXT NULL,
+    card_ID TEXT NULL,
+    job_title TEXT NULL,
+    department TEXT NULL,
+    salary REAL NULL,
+    start_date DATE NULL,
+    end_date DATE NULL
 );
 
 -- Create timesheets table
 CREATE TABLE timesheets (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    -- Rest of the fields
     start_time DATETIME NOT NULL,
     end_time DATETIME NOT NULL,
-    employee_id INTEGER NOT NULL,
-    FOREIGN KEY (employee_id) REFERENCES employees(id)
+    employee_id INTEGER,
+    FOREIGN KEY (employee_id) REFERENCES employees(id) ON DELETE CASCADE,
+    CHECK (end_time > start_time) 
 );

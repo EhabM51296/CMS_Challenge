@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router";
-import { useState } from "react";
 import { getDB } from "~/db/getDB";
+import CommonUrls from "~/components/CommonUrls";
 
 export async function loader() {
   const db = await getDB();
@@ -44,10 +44,7 @@ export default function TimesheetsPage() {
         </div>
       )}
       <hr />
-      <ul>
-        <li><a href="/timesheets/new">New Timesheet</a></li>
-        <li><a href="/employees">Employees</a></li>
-      </ul>
+      <CommonUrls />
     </div>
   );
 }

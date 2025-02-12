@@ -9,6 +9,9 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import { useState } from "react";
+import Navbar from "./components/Navbar/Navbar";
+import Header from "./components/Header/Header";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -24,6 +27,12 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const [isNavbarOpen, setIsNavBarOpen] = useState(true);
+
+  const toggleNavbar = () => {
+    setIsNavBarOpen((prev) => !prev);
+  };
+
   return (
     <html lang="en">
       <head>
@@ -33,7 +42,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <div className="w-full flex min-w-80">
+          <Navbar isOpen={isNavbarOpen} />
+          <div className="bg-light-content-bg w-full">
+            <Header isOpen={isNavbarOpen} toggleNavbar={toggleNavbar} />
+            <div className="p-8">{children}</div>
+          </div>
+        </div>
         <ScrollRestoration />
         <Scripts />
       </body>

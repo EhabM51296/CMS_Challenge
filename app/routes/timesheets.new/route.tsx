@@ -8,6 +8,7 @@ export async function loader() {
 }
 
 import type { ActionFunction } from "react-router";
+import CommonUrls from "~/components/CommonUrls";
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
@@ -44,10 +45,7 @@ export default function NewTimesheetPage() {
         <button type="submit">Create Timesheet</button>
       </Form>
       <hr />
-      <ul>
-        <li><a href="/timesheets">Timesheets</a></li>
-        <li><a href="/employees">Employees</a></li>
-      </ul>
+      <CommonUrls />
     </div>
   );
 }

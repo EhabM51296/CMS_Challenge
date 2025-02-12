@@ -1,5 +1,7 @@
 import { Form, redirect, type ActionFunction } from "react-router";
+import CommonUrls from "~/components/CommonUrls";
 import { getDB } from "~/db/getDB";
+import { ROUTES } from "~/routes";
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
@@ -11,7 +13,7 @@ export const action: ActionFunction = async ({ request }) => {
     [full_name]
   );
 
-  return redirect("/employees");
+  return redirect(ROUTES.EMPLOYEES);
 }
 
 export default function NewEmployeePage() {
@@ -26,10 +28,7 @@ export default function NewEmployeePage() {
         <button type="submit">Create Employee</button>
       </Form>
       <hr />
-      <ul>
-        <li><a href="/employees">Employees</a></li>
-        <li><a href="/timesheets">Timesheets</a></li>
-      </ul>
+      <CommonUrls />
     </div>
   );
 }
