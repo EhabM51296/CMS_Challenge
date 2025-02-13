@@ -1,4 +1,4 @@
-import noProfileImg from "../../uploads/noProfile.jpg"
+import noProfileImg from "../../../public/uploads/noProfile.jpg"
 
 type Props = {
   src?: string;
@@ -6,7 +6,7 @@ type Props = {
 
 const ImgColumn = ({ src }: Props) => {
     const img = src ?? noProfileImg;
-  return <img src={img} className="w-10 h-10 rounded-full" />;
+  return <img src={img} className="w-10 h-10 rounded-full object-cover" />;
 };
 
 export default ImgColumn;
