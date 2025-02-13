@@ -9,7 +9,8 @@ import UserIcon from "./components/Icons/UserIcon";
 export const ROUTES = {
   EMPLOYEES: "/employees",
   NEW_EMPLOYEE: "/employees/new",
-  TIMESHEETS: "timesheets"
+  TIMESHEETS: "/timesheets",
+  New_TIMESHEET: "/timesheets/new",
 } as const;
 
 export const navigators: NavigatorItem[] = [
@@ -22,6 +23,11 @@ export const navigators: NavigatorItem[] = [
   {
     label: "Timesheet",
     link: ROUTES.TIMESHEETS,
-    icon: TimeIcon
+    icon: TimeIcon,
+  },
+  {
+    label: "New Timesheet",
+    link: ROUTES.New_TIMESHEET,
+    icon: TimeIcon,
   },
 ];

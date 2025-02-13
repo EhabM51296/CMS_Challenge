@@ -66,25 +66,12 @@ export const action: ActionFunction = async ({ request, params }) => {
   return redirect(ROUTES.EMPLOYEES);
 };
 
-export const loader = async ({ params }: LoaderFunctionArgs) => {
-  const id = params.id;
-  if (!id) return null;
 
-  const db = await getDB();
-  const employee = await db.get(`SELECT * FROM employees WHERE id = ?`, [id]);
-  if (!employee) {
-    throw new Response("Employee not found", { status: 404 });
-  }
-
-  return employee;
-};
 
 export default function NewEmployeePage() {
-  const employee = useLoaderData();
-
   return (
     <div className="bg-white w-full max-w-3xl mx-auto p-8 flex flex-col gap-8">
-      <h1>{employee ? "Edit Employee" : "Create New Employee"}</h1>
+      <h1>Create New Employee</h1>
       <EmployeeForm />
       <hr />
       <CommonUrls />

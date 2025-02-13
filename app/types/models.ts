@@ -20,4 +20,9 @@ type Employee = {
     end_time: string;
     employee_id: number;
   };
+
+
+  type TimeSheetTable = Timesheet & {
+    employee_full_name: string;
+  }
   

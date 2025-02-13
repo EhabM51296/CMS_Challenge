@@ -345,15 +345,10 @@ const insertData = (table, data) => {
   insertStmt.finalize();
 };
 
-const deleteData = () => {
-  const insertStmt = db.prepare(`DELETE FROM employees`);
-  insertStmt.finalize();
-};
 
 db.serialize(() => {
-  // insertData('employees', employees);
-  // insertData('timesheets', timesheets);
-  deleteData();
+  insertData('employees', employees);
+  insertData('timesheets', timesheets);
 });
 
 db.close(err => {

@@ -1,6 +1,5 @@
 import type { InputHTMLAttributes } from "react";
-import type { FieldValues, Path, RegisterOptions } from "react-hook-form";
-import { type Props as ReactSelectProps } from "react-select";
+import { type PropsValue, type Props as ReactSelectProps } from "react-select";
 
 export type CommonInputPropsType = {
   label?: string;
@@ -15,18 +14,17 @@ export type TextareaInputPropsType = InputHTMLAttributes<HTMLTextAreaElement> &
 
 export type CheckboxInputPropsType = InputPropsType & {
   isToggleLayout?: boolean;
-}
+};
 
-  export type TOption<T> = {
-    label: string;
-    value: T;
-  };
-  
-  export type SelectInputPropsType<TOptionValue, Multi extends boolean = false> = 
-    InputHTMLAttributes<HTMLSelectElement> &
-    CommonInputPropsType &
-    ReactSelectProps<TOption<TOptionValue>, Multi>;
+export type TOption<T> = {
+  label: string;
+  value: T;
+};
 
-
-
-
+export type SelectInputPropsType<
+  TOptionValue,
+  Multi extends boolean = false
+> = Omit<InputHTMLAttributes<HTMLSelectElement>, "defaultValue"> & {
+  defaultValue: PropsValue<TOption<number>> | undefined;
+} & CommonInputPropsType &
+  ReactSelectProps<TOption<TOptionValue>, Multi>;
