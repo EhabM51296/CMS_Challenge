@@ -11,7 +11,7 @@ const Navbar = ({ isOpen }: Props) => {
   return (
     <nav
       className={clsx(
-        "z-9999 shadow-xl absolute left-0 top-0 md:relative h-screen transition-all duration-300 ease-in-out overflow-hidden py-10 bg-light-bg flex flex-col gap-20 w-0 p-0",
+        "flex-shrink-0 z-9999 shadow-xl absolute left-0 top-0 md:relative h-screen transition-all duration-300 ease-in-out overflow-hidden py-10 bg-light-bg flex flex-col gap-20 w-0 p-0",
         { "w-64 pl-10": isOpen }
       )}
     >

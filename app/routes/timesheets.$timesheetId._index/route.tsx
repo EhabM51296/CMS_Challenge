@@ -8,7 +8,6 @@ import CommonUrls from "~/components/CommonUrls";
 import { getDB } from "~/db/getDB";
 import { ROUTES } from "~/routes";
 import TimesheetForm from "~/components/TimesheetForm/TimesheetForm";
-import CalendarApp from "~/components/Calendar";
 
 export const action: ActionFunction = async ({ request, params }) => {
   const formData = await request.formData();

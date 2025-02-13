@@ -48,7 +48,7 @@ export default function InvoicesTable<T>({
     <div
       ref={containerRef}
       className={clsx(
-        "bg-white flex flex-col rounded-md pb-3 max-h-[600px] bg-red-500 w-full",
+        "bg-white flex flex-col rounded-md pb-3 max-h-[600px] w-full",
         className
       )}
     >
@@ -56,7 +56,7 @@ export default function InvoicesTable<T>({
         <h3 className="text-lg ml-3">{title}</h3>
       </div>
       <div className="w-full overflow-auto">
-        <table className="w-full border-separate border-spacing-0 border-transparent min-w-[1000px]">
+        <table className="w-full border-separate border-spacing-0 border-transparent md:min-w-auto min-w-[1000px]">
           <thead className="z-10">
             {table.getHeaderGroups().map((headerGroup) => {
               return (

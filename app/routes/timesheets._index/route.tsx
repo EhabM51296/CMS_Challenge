@@ -40,7 +40,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 }
 
 export default function TimesheetsPage() {
-  const [tableView, setTableView] = useState(false);
+  const [tableView, setTableView] = useState(true);
 
   const { timesheetsAndEmployees, totalPages, currentPage } = useLoaderData();
   const navigate = useNavigate();

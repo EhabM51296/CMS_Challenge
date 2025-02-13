@@ -12,6 +12,7 @@ import "./app.css";
 import { useState } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import Header from "./components/Header/Header";
+import clsx from "clsx";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -44,7 +45,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         <div className="w-full flex min-w-80">
           <Navbar isOpen={isNavbarOpen} />
-          <div className="bg-light-content-bg w-full">
+          <div className={clsx("bg-light-content-bg w-full")}>
             <Header isOpen={isNavbarOpen} toggleNavbar={toggleNavbar} />
             <div className="p-8">{children}</div>
           </div>
