@@ -14,8 +14,6 @@ const Header = ({ isOpen, toggleNavbar }: Props) => {
     location.pathname.startsWith(e.link)
   );
 
-  console.log(location.pathname);
-
   return (
     <header className="w-full bg-light-bg flex justify-between p-8 items-center">
       <h3>{currentPage?.label}</h3>

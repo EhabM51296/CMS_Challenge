@@ -16,7 +16,7 @@ type Props = {
 function Calendar({ timeSheets }: Props) {
   const timeSheetEvents = timeSheets.map((t) => ({
     id: t.id,
-    title: t.employee_full_name,
+    title: t.employee_full_name + ": " + t.description,
     start: formatDateTime(t.start_time),
     end: formatDateTime(t.end_time),
   }));

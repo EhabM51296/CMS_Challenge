@@ -45,6 +45,7 @@ CREATE TABLE timesheets (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     start_time DATETIME NOT NULL,
     end_time DATETIME NOT NULL,
+    description Text NOT NULL,
     employee_id INTEGER,
     FOREIGN KEY (employee_id) REFERENCES employees(id) ON DELETE CASCADE,
     CHECK (end_time > start_time) 

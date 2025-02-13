@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { TextareaInputPropsType } from "../../utils/types/input.types";
+import type { TextareaInputPropsType } from "~/types/input.types";
 
 const TextareaInput = ({label, className, ...props}: TextareaInputPropsType) => {
    return (

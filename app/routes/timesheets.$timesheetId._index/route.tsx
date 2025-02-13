@@ -15,11 +15,12 @@ export const action: ActionFunction = async ({ request, params }) => {
   const employee_id = formData.get("employee_id");
   const start_time = formData.get("start_time");
   const end_time = formData.get("end_time");
+  const description = formData.get("description");
 
   const db = await getDB();
   await db.run(
-    "UPDATE timesheets SET employee_id=?, start_time=?, end_time=? where id=?",
-    [employee_id, start_time, end_time, id]
+    "UPDATE timesheets SET employee_id=?, start_time=?, end_time=?, description=? where id=?",
+    [employee_id, start_time, end_time, description, id]
   );
 
   return redirect(ROUTES.TIMESHEETS);
@@ -65,6 +66,7 @@ export default function TimesheetPage() {
             <li>Start time: {timesheet.start_time}</li>
             <li>End time: {timesheet.end_time}</li>
             <li>Employee: {timesheet.employee_full_name}</li>
+            <li>Description: {timesheet.description}</li>
           </ul>
         </div>
         <TimesheetForm timesheet={timesheet} employees={employees} />

@@ -1,5 +1,6 @@
 import { Form } from "react-router";
 import TextInput from "../inputs/TextInput";
+import TextareaInput from "../inputs/TextareaInput";
 
 type Props = {
   employees: Employee[];
@@ -50,6 +51,15 @@ const TimesheetForm = ({ employees, timesheet }: Props) => {
               </option>
             ))}
           </select>
+        </div>
+        <div>
+        <label htmlFor="description">Description</label>
+          <TextareaInput
+          name="description"
+          id="description"
+          required
+          defaultValue={timesheet?.description}
+          />
         </div>
       </div>
       <button

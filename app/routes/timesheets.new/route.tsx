@@ -16,11 +16,12 @@ export const action: ActionFunction = async ({ request }) => {
   const employee_id = formData.get("employee_id");
   const start_time = formData.get("start_time");
   const end_time = formData.get("end_time");
+  const description = formData.get("description");
 
   const db = await getDB();
   await db.run(
-    "INSERT INTO timesheets (employee_id, start_time, end_time) VALUES (?, ?, ?)",
-    [employee_id, start_time, end_time]
+    "INSERT INTO timesheets (employee_id, start_time, end_time, description) VALUES (?, ?, ?, ?)",
+    [employee_id, start_time, end_time, description]
   );
 
   return redirect(ROUTES.TIMESHEETS);
